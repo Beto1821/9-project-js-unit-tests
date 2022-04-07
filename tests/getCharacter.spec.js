@@ -79,7 +79,7 @@ describe('9 - Implemente os casos de teste da função `getCharacter`', () => {
     });
     // Teste se ao passar um nome que não está na tabela, a função retorna undefined.
     test('Teste se ao passar um nome que não está na tabela, a função retorna undefined', () => {
-      expect(getCharacter(name)).toBeUndefined();
+      expect(getCharacter('adalberto')).toBeUndefined();
     });
   // });
 });
