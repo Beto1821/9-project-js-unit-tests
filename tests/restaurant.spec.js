@@ -1,3 +1,4 @@
+const { TestScheduler } = require('jest');
 const createMenu = require('../src/restaurant');
  
 /*
@@ -52,8 +53,10 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // ```
     // const objetoRetornado = createMenu(); // Retorno: { fetchMenu: () => {}, ... }
     // ```
+    const objetoRetornado =creatMenu();
+
     test('Verifique se o retorno da função createMenu() é um objeto que possui a chave fetchMenu, a qual tem como valor uma função', () => {
-      expect(Object.keys(createMenu())).toContain('fetchMenu');
+      expect(typeof objetoRetornado.fetchmenu).toEqual('function');
     });
     // TESTE 2: Verifique se 'objetoRetornado.fetchMenu()' retorna um objeto cujas chaves são somente `food` e `drink`, 
     // considerando que a função createMenu() foi chamada com o objeto: `{ food: {}, drink: {} }`.
