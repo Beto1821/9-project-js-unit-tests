@@ -94,8 +94,8 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // ao array retornado em `objetoRetornado.consumption`.
     // ```
     test('Retorno coxinha adicionado ao array retornado em objetoRetornado.consuptiom', () => {
-      objetoRetornado.order('coxinha');
       const objetoRetornado = createMenu({ food: {}, drink: {} });
+      objetoRetornado.order('coxinha');
     expect(objetoRetornado.consumption).toEqual(['coxinha']);
     });
     // const objetoRetornado = createMenu(objetoQualquer);
@@ -109,6 +109,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order("coxinha");
     test('Verifique se adicionar pedido, o array objetoRetornado.consumption contém o item pedido', () => {
       const objetoRetornado = createMenu({ food: {}, drink: {} });      
+      objetoRetornado.order('coxinha');
       objetoRetornado.order('agua');
     // objetoRetornado.order("sopa");
     // objetoRetornado.order("sashimi");

@@ -112,14 +112,6 @@ const contaTotal = (menu, consumo) => {
   return soma;
 };
 
-// const testeObj = {
-//   food: { coxinha: 3.9, sanduiche: 9.9 },
-//   drinks: { agua: 3.9, cerveja: 6.9 },
-// };
-
-// const testeArr = ["coxinha", "agua", 'coxinha'];
-// console.log(contaTotal(testeObj, testeArr));
-
 const createMenu = (objeto) => {
   const restaurant = {
     fetchMenu: () => objeto,
