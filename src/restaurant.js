@@ -57,18 +57,18 @@
 
 //------------------------------------------------------------------------------------------
 
-// PASSO 3: Crie uma função, separada da função `createMenu()`, que, dada uma string recebida por parâmetro, 
+// PASSO 3: Crie uma função, separada da função `createMenu()`, que, dada uma string recebida por parâmetro,
 // adiciona essa string ao array de `objetoRetornado.consumption`. Adicione essa função à chave `order`.
-// DICA: para criar isso, você pode: 
+// DICA: para criar isso, você pode:
 // - Definir a função `createMenu()`
-// - Definir o objeto que a `createMenu()` retorna, mas separadamente 
+// - Definir o objeto que a `createMenu()` retorna, mas separadamente
 // - E, depois, definir a função que será atribuída a `order`.
 // ```
 // const restaurant = {}
 //
 // const createMenu = (myMenu) => // Lógica que edita o objeto `restaurant`
 //
-// const orderFromMenu = (request) => // Lógica que adiciona à chave `consumption` de `restaurant` a string recebida no parâmetro `request`. 
+// const orderFromMenu = (request) => // Lógica que adiciona à chave `consumption` de `restaurant` a string recebida no parâmetro `request`.
 // // Essa função deve ser associada à chave `order` de `restaurant`
 // ```
 // Agora faça o TESTE 6 no arquivo `tests/restaurant.spec.js`.
@@ -79,6 +79,58 @@
 // que percorre por todos os itens de `objetoRetornado.consumption`, soma o preço deles e retorna o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
 
-const createMenu = () => {};
+const totalComida = (comidaMenu, comidaValor, consumo) => {
+  let total = 0;
+  for (let i = 0; i < comidaMenu.length; i += 1) {
+    if (consumo === comidaMenu[i]) {
+      total += comidaValor[i];
+    }
+  }
+  return total;
+};
+
+const totalBebida = (bebidaMenu, bebidaValor, consumo) => {
+  let total = 0;
+  for (let i = 0; i < bebidaMenu.length; i += 1) {
+    if (consumo === bebidaMenu[i]) {
+      total += bebidaValor[i];
+    }
+  }
+  return total;
+};
+
+const contaTotal = (menu, consumo) => {
+  const comidaMenu = Object.keys(menu.food);
+  const bebidaMenu = Object.keys(menu.drinks);
+  const comidaValor = Object.values(menu.food);
+  const bebidaValor = Object.values(menu.drinks);
+  let soma = 0;
+  for (let i = 0; i < consumo.length; i += 1) {
+    soma += totalBebida(bebidaMenu, bebidaValor, consumo[i]);
+    soma += totalComida(comidaMenu, comidaValor, consumo[i]);
+  }
+  return soma;
+};
+
+// const testeObj = {
+//   food: { coxinha: 3.9, sanduiche: 9.9 },
+//   drinks: { agua: 3.9, cerveja: 6.9 },
+// };
+
+// const testeArr = ["coxinha", "agua", 'coxinha'];
+// console.log(contaTotal(testeObj, testeArr));
+
+const createMenu = (objeto) => {
+  const restaurant = {
+    fetchMenu: () => objeto,
+    consumption: [],
+    order: (newOrder) => {
+      restaurant.consumption.push(newOrder);
+    },
+    pay: () => contaTotal(objeto, restaurant.consumption),
+  };
+
+  return restaurant;
+};
 
 module.exports = createMenu;

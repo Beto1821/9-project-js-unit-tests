@@ -55,7 +55,7 @@ describe('6 - Implemente os casos de teste para a função `productDetails`', ()
     // Teste se os dois productIds terminam com 123.
     test('Teste se quando passado parâmetros diferentes entre si, os dois objetos também são diferentes entre si', () => {
       const product = productDetails('aaa123' , 'aaa123');
-      expect(product[0].details.productId.substr(-3)).toEqual(product[1].details.productId.substr(-3));
+      expect(product[0].details.productId.slice(-3)).toEqual(product[1].details.productId.slice(-3));
     });
   // });
 });
